@@ -1,5 +1,7 @@
 # Scoreboard App
 
+![gitleaks](https://github.com/jancherian/SCOREIT/actions/workflows/gitleaks.yml/badge.svg)
+
 A full-stack, real-time college scoreboard for managing and displaying live match scores across multiple sports. Operators control matches from a dashboard, and a projector-friendly display view shows the scoreboard to the audience.
 
 ## Tech stack
