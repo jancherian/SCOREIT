@@ -1,0 +1,32 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "extra-generic-api-key"
+description = "Generic API key assignment"
+regex = '''(?i)(api[_-]?key|apikey|secret[_-]?key|access[_-]?key|private[_-]?key)\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}['\"]?'''
+keywords = ["api_key", "apikey", "secret_key", "access_key", "private_key"]
+
+[[rules]]
+id = "extra-github-token"
+description = "GitHub token"
+regex = '''ghp_[A-Za-z0-9]{36}'''
+keywords = ["ghp_"]
+
+[[rules]]
+id = "extra-slack-token"
+description = "Slack token"
+regex = '''xox[baprs]-[A-Za-z0-9-]{10,}'''
+keywords = ["xox"]
+
+[[rules]]
+id = "extra-stripe-key"
+description = "Stripe key"
+regex = '''sk_(live|test)_[A-Za-z0-9]{16,}'''
+keywords = ["sk_live", "sk_test"]
+
+[[rules]]
+id = "extra-aws-access-key"
+description = "AWS access key id"
+regex = '''AKIA[0-9A-Z]{16}'''
+keywords = ["AKIA"]
