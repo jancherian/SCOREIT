@@ -97,7 +97,6 @@ function Control() {
     try {
       await startMatch(teamInputs, selectedSportId);
       setShowSetup(false);
-      toast.success('🏀 Match started');
     } catch (err) {
       toast.error('Failed to start match.');
     }
