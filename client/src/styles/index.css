@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&family=DSEG7+Classic:wght@400;700&family=Orbitron:wght@600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-scoreit-50: #fff7ed;
+  --color-scoreit-100: #ffedd5;
+  --color-scoreit-200: #fed7aa;
+  --color-scoreit-300: #fdba74;
+  --color-scoreit-400: #fb923c;
+  --color-scoreit-500: #f97316;
+  --color-scoreit-600: #ea580c;
+  --color-scoreit-700: #c2410c;
+  --color-scoreit-800: #9a3412;
+  --color-scoreit-900: #7c2d12;
+  --color-scoreit-950: #431407;
+
+  --color-glow-400: #fbbf24;
+  --color-glow-500: #f59e0b;
+  --color-glow-600: #d97706;
+
+  --color-court-900: #0f172a;
+  --color-court-800: #1e293b;
+  --color-court-700: #334155;
+  --color-court-600: #475569;
+
+  --color-primary: #0b0d10;
+  --color-secondary: #9b948c;
+  --color-accent: #f97316;
+  --color-highlight: #fbbf24;
+  --color-score: #ffffff;
+
+  --color-surface: #0f172a;
+  --color-surface-2: #1e293b;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+
+  --color-bright-red: #f97316;
+  --color-razzmatazz: #f97316;
+  --color-malachite: #f97316;
+  --color-heliotrope: #fbbf24;
+}
+
+:root {
+  font-family: 'Manrope', system-ui, sans-serif;
+  line-height: 1.5;
+  color-scheme: dark;
+}
+
+:root.light {
+  --color-primary: #1b1308;
+  --color-secondary: #6b5b4a;
+  --color-accent: #f97316;
+  --color-highlight: #fbbf24;
+  --color-score: #1b1308;
+
+  --color-surface: #fff7ed;
+  --color-surface-2: #ffedd5;
+  --color-border: #f0d9c1;
+  --color-border-strong: #e6c7a6;
+}
+
+:root.dark {
+  --color-primary: #ffffff;
+  --color-secondary: #9aa3ad;
+  --color-accent: #f97316;
+  --color-highlight: #fbbf24;
+  --color-score: #ffffff;
+
+  --color-surface: #0f172a;
+  --color-surface-2: #1e293b;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+}
+
+/* 
+:root.dark body {
+  @apply bg-slate-950 text-white;
+}
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+.glass {
+  @apply bg-surface/75 border border-border/70 shadow-sm;
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .glass {
+    @apply backdrop-blur-md;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  @apply bg-surface text-primary;
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle grid + vignette background for hero sections */
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.18) 1px, transparent 0),
+    radial-gradient(circle at 1px 1px, rgba(249, 115, 22, 0.12) 1px, transparent 0);
+  background-size: 22px 22px, 44px 44px;
+  background-position: 0 0, 12px 12px;
+}
+
+.hero-vignette {
+  box-shadow: inset 0 0 220px rgba(2, 6, 23, 0.6);
+}
+
+.hero-orb {
+  filter: blur(90px);
+  opacity: 0.7;
+}
+
+.app-shell {
+  @apply min-h-screen flex flex-col;
+}
+
+.app-shell-main {
+  @apply flex-1 flex flex-col items-center justify-center p-4 md:p-8;
+}
+
+/* Brand title font */
+.brand-title {
+  font-family: 'Orbitron', 'Sora', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Modern heading font */
+.scoreboard-score-font {
+  font-family: 'Sora', 'Manrope', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Retro 7-segment scoreboard digits */
+.score-7seg {
+  font-family: 'DSEG7 Classic', 'Sora', system-ui, sans-serif;
+  letter-spacing: 0.06em;
+}
+
+/* Enforce Inter for all non-brand text */
+.font-mono,
+.font-outfit {
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+/* Winner celebration */
+.winner-wrap {
+  position: relative;
+  isolation: isolate;
+}
+
+.winner-title {
+  letter-spacing: 0.3em;
+}
+
+@keyframes trophyPop {
+  0% {
+    transform: scale(0.85) translateY(10px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05) translateY(-2px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.winner-card {
+  animation: trophyPop 0.7s ease-out;
+}
+
+/* Glassmorphism utility handled by .glass above */
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.98);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-press {
+  animation: buttonPress 0.16s ease-out;
+}
+
+/* Score flash with glow */
+@keyframes scoreFlash {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+    text-shadow: 0 0 0 transparent;
+  }
+
+  50% {
+    transform: scale(1.15);
+    filter: brightness(1.3);
+    text-shadow: 0 0 34px rgba(249, 115, 22, 0.65);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+.score-flash {
+  animation: scoreFlash 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Card entrance animation */
+@keyframes displayCardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.display-card-in {
+  animation: displayCardIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Floating animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 22px rgba(249, 115, 22, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 46px rgba(251, 191, 36, 0.65);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.5);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.bg-gradient-radial {
+  background-image: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+}
+
+/* Confetti particles */
+@keyframes confettiFall {
+  0% {
+    transform: translate3d(0, -20%, 0) rotateZ(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, 120%, 0) rotateZ(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: confettiFall 3s ease-in forwards;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.4);
+  animation: ripple 0.6s ease-out;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(249, 115, 22, 0.5),
+      rgba(251, 191, 36, 0.5),
+      transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Breathing animation for live status */
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(2, 12, 27, 0.12);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
